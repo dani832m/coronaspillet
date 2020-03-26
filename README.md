@@ -1,6 +1,6 @@
 # Coronaspillet
 
-Baseret på HTML Canvas, CSS og JavaScript har jeg bikset dette lille spil sammen, hvor det gælder om at styre Coronavirussen uden om menneskerne for at undgå at sprede smitten. Jo flere mennesker, du styrer uden om, desto flere credits får du af Mette. Du styrer virussen vha. knapperne, og dine credits står oppe i hjørnet.
+Baseret på HTML Canvas, CSS og JavaScript har jeg bikset dette lille spil sammen, hvor det gælder om at styre Coronavirussen uden om menneskerne for at undgå at sprede smitten. Jo flere mennesker, du styrer uden om, desto flere credits får du af Mette. Du styrer virussen via piletasterne, og dine credits står oppe i hjørnet.
 
 ## Prøv spillet
 

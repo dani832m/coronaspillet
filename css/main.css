@@ -108,7 +108,8 @@ body {
 /***** MEDIA QUERIES *****/
 
 @media (max-width: 480px) {
-  .mainview {
+  .mainview,
+  .gameview {
     display: none;
   }
   .small-device-alert {
