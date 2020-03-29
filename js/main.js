@@ -23,14 +23,12 @@ document.querySelector(".close-groundwork").addEventListener("click", () => {
   document.querySelector(".groundwork").style.visibility = "hidden";
 });
 
-/* Declare Game Piece Variable */
+/* Declare Game Variables */
 let gamePiece;
-
-/* Declare Obstacles as an Array */
 const obstacles = [];
-
-/* Declare Score Variable */
-let score;
+let credits;
+let level;
+let background;
 
 /* Start Game */
 const startGame = () => {
@@ -38,8 +36,10 @@ const startGame = () => {
   document.querySelector(".mainview").style.display = "none";
 
   /* Initialize Variables with Component Objects */
-  gamePiece = new Component(30, 30, "red", 10, 120);
-  score = new Component("20px", "Arial", "black", 350, 30, "text");
+  gamePiece = new Component(40, 40, "./img/game-piece.png", 10, 120, "image");
+  credits = new Component("15px", "Arial", "white", 290, 25, "text");
+  level = new Component("15px", "Arial", "white", 400, 25, "text");
+  background = new Component(480, 270, "./img/background.png", 0, 0, "image");
 
   /* Call Start Method on Game Area */
   gameArea.start();
@@ -55,15 +55,20 @@ const gameArea = {
     this.canvas.height = 270;
     this.canvas.className = "gameview";
     this.context = this.canvas.getContext("2d");
-    document.querySelector(".container").appendChild(this.canvas);
     this.frameNo = 0;
     this.interval = setInterval(updateGameArea, 20);
+
+    /* Append Canvas to Container */
+    document.querySelector(".container").appendChild(this.canvas);
+
+    /* Listen on Keys */
     window.addEventListener("keydown", e => {
       gameArea.keys = gameArea.keys || [];
       gameArea.keys[e.keyCode] = true;
     });
     window.addEventListener("keyup", e => {
       gameArea.keys[e.keyCode] = false;
+      gamePiece.image.src = "./img/game-piece.png";
     });
   },
 
@@ -81,6 +86,10 @@ const gameArea = {
 /* Object Constructor */
 function Component(width, height, color, x, y, type) {
   this.type = type;
+  if (type == "image") {
+    this.image = new Image();
+    this.image.src = color;
+  }
   this.width = width;
   this.height = height;
   this.speedX = 0;
@@ -90,9 +99,15 @@ function Component(width, height, color, x, y, type) {
   this.update = () => {
     ctx = gameArea.context;
     if (this.type == "text") {
-      ctx.font = `${this.width} ${this.height}`;
+      ctx.font = `bold ${this.width} ${this.height}`;
+      ctx.strokeStyle = "rgb(0, 48, 87)";
+      ctx.lineWidth = 5;
+      ctx.strokeText(this.text, this.x, this.y);
       ctx.fillStyle = color;
       ctx.fillText(this.text, this.x, this.y);
+    }
+    if (type == "image") {
+      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     } else {
       ctx.fillStyle = color;
       ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -121,53 +136,99 @@ function Component(width, height, color, x, y, type) {
 
 /* Update Game Area */
 const updateGameArea = () => {
+  /* Declare Variables */
   let x, height, gap, minHeight, maxHeight, minGap, maxGap;
+
+  /* Loop through Obstacles */
   for (i = 0; i < obstacles.length; i += 1) {
+    /* If Game Piece crashes with Obstacles */
     if (gamePiece.crashWith(obstacles[i])) {
+      const died = new Component("22px", "Arial", "white", 100, 140, "text");
+      died.text = "Du smittede! Spillet er slut.";
+      died.update();
       gameArea.stop();
       return;
     }
   }
+
   gameArea.clear();
+  background.newPos();
+  background.update();
+
   gamePiece.speedX = 0;
   gamePiece.speedY = 0;
+
+  /* If Arrow Keys are pressed */
   if (gameArea.keys && gameArea.keys[37]) {
     gamePiece.speedX = -1;
+    gamePiece.image.src = "./img/game-piece-moved.png";
   }
   if (gameArea.keys && gameArea.keys[39]) {
     gamePiece.speedX = 1;
+    gamePiece.image.src = "./img/game-piece-moved.png";
   }
   if (gameArea.keys && gameArea.keys[38]) {
     gamePiece.speedY = -1;
+    gamePiece.image.src = "./img/game-piece-moved.png";
   }
   if (gameArea.keys && gameArea.keys[40]) {
     gamePiece.speedY = 1;
+    gamePiece.image.src = "./img/game-piece-moved.png";
   }
+
   gameArea.frameNo += 1;
   if (gameArea.frameNo == 1 || everyInterval(150)) {
     x = gameArea.canvas.width;
-    minHeight = 20;
+    minHeight = 80;
     maxHeight = 200;
     height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
-    minGap = 50;
-    maxGap = 200;
+    minGap = 55;
+    maxGap = 120;
     gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
-    obstacles.push(new Component(10, height, "green", x, 0));
-    obstacles.push(new Component(10, x - height - gap, "green", x, height + gap));
+    obstacles.push(new Component(25, height, "./img/obstacles.png", x, 0, "image"));
+    obstacles.push(new Component(25, x - height - gap, "./img/obstacles2.png", x, height + gap, "image"));
   }
   for (i = 0; i < obstacles.length; i += 1) {
     obstacles[i].x += -1;
     obstacles[i].update();
   }
-  score.text = `Credits: ${gameArea.frameNo}`;
-  score.update();
+
+  /* Handle shown Credits and Level */
+  credits.text = `Credits: ${gameArea.frameNo}`;
+  if (gameArea.frameNo < 1500) {
+    level.text = "Level: 1";
+  } else {
+    level.text = `Level: ${(gameArea.frameNo / 1000).toFixed()}`;
+  }
+
+  /* Declare and initialize Variable */
+  let levelUp = new Component("22px", "Arial", "white", 201, 140, "text");
+
+  /* Level 2 */
+  if (gameArea.frameNo >= 1500 && gameArea.frameNo < 2500) {
+    background = new Component(480, 270, "./img/game-piece.png", 0, 0, "image");
+    if (gameArea.frameNo >= 1500 && gameArea.frameNo < 1575) {
+      levelUp.text = "Level 2";
+      levelUp.update();
+    }
+    credits.update();
+    level.update();
+    gamePiece.newPos();
+    gamePiece.update();
+    obstacles.update();
+    background.update();
+  }
+
+  /* Level 1 */
+  credits.update();
+  level.update();
   gamePiece.newPos();
   gamePiece.update();
 };
 
-function everyInterval(n) {
+const everyInterval = n => {
   if ((gameArea.frameNo / n) % 1 == 0) {
     return true;
   }
   return false;
-}
+};
