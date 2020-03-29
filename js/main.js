@@ -90,7 +90,7 @@ function Component(width, height, color, x, y, type) {
   this.update = () => {
     ctx = gameArea.context;
     if (this.type == "text") {
-      ctx.font = this.width + " " + this.height;
+      ctx.font = `${this.width} ${this.height}`;
       ctx.fillStyle = color;
       ctx.fillText(this.text, this.x, this.y);
     } else {
@@ -159,7 +159,7 @@ const updateGameArea = () => {
     obstacles[i].x += -1;
     obstacles[i].update();
   }
-  score.text = "Credits: " + gameArea.frameNo;
+  score.text = `Credits: ${gameArea.frameNo}`;
   score.update();
   gamePiece.newPos();
   gamePiece.update();
