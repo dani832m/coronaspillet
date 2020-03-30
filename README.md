@@ -8,4 +8,7 @@ Enten kan du downloade kildekoden og spille lokalt i din browser, eller også ka
 
 ## Screenshots
 
-Kommer senere.
+<img src="https://i.imgur.com/gYt5ME8.png" alt="Screenshot from Game" width="480" height="270" />
+<img src="https://i.imgur.com/bwbQ2q2.png" alt="Screenshot from Game" width="480" height="270" />
+<img src="https://i.imgur.com/8F4QnrV.png" alt="Screenshot from Game" width="480" height="270" />
+<img src="https://i.imgur.com/AgXee7Z.png" alt="Screenshot from Game" width="480" height="270" />
