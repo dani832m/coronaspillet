@@ -24,11 +24,8 @@ document.querySelector(".close-groundwork").addEventListener("click", () => {
 });
 
 /* Declare Game Variables */
-let gamePiece;
+let gamePiece, credits, level, background, levelUp, died, restart;
 let obstacles = [];
-let credits;
-let level;
-let background;
 
 /* Start Game */
 const startGame = () => {
@@ -143,8 +140,8 @@ const updateGameArea = () => {
   for (i = 0; i < obstacles.length; i += 1) {
     /* If Game Piece crashes with Obstacles */
     if (gamePiece.crashWith(obstacles[i])) {
-      const died = new Component("22px", "Arial", "white", 100, 125, "text");
-      const restart = new Component("18px", "Arial", "white", 122, 160, "text");
+      died = new Component("22px", "Arial", "white", 100, 125, "text");
+      restart = new Component("18px", "Arial", "white", 122, 160, "text");
       died.text = "Du smittede! Spillet er slut.";
       restart.text = "Tryk på 'R' for at prøve igen.";
       died.update();
@@ -219,8 +216,8 @@ const updateGameArea = () => {
     level.text = `Level: ${(gameArea.frameNo / 2000).toFixed()}`;
   }
 
-  /* Declare and initialize Variable */
-  let levelUp = new Component("22px", "Arial", "white", 201, 140, "text");
+  /* Initialize Variable */
+  levelUp = new Component("22px", "Arial", "white", 201, 140, "text");
 
   /* Level 1 */
   if (gameArea.frameNo < 3000) {
@@ -294,6 +291,8 @@ const updateGameArea = () => {
   if (gameArea.frameNo >= 11000) {
     background = new Component(480, 270, "./img/completed.png", 0, 0, "image");
     background.update();
+    /* Prevent Game Over text to be displayed */
+    obstacles = [];
   }
 };
 
