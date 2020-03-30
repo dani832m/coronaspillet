@@ -169,20 +169,29 @@ const updateGameArea = () => {
 
   /* If Arrow Keys are pressed */
   if (gameArea.keys && gameArea.keys[37]) {
-    gamePiece.speedX = -1;
-    gamePiece.image.src = "./img/game-piece-moved.png";
+    /* If Position of Game Piece is inside of the Game Area */
+    if (gamePiece.x - gamePiece.speedX > 0) {
+      gamePiece.speedX = -1;
+      gamePiece.image.src = "./img/game-piece-moved.png";
+    }
   }
   if (gameArea.keys && gameArea.keys[39]) {
-    gamePiece.speedX = 1;
-    gamePiece.image.src = "./img/game-piece-moved.png";
+    if (gamePiece.x + gamePiece.width + gamePiece.speedX < gameArea.canvas.width) {
+      gamePiece.speedX = 1;
+      gamePiece.image.src = "./img/game-piece-moved.png";
+    }
   }
   if (gameArea.keys && gameArea.keys[38]) {
-    gamePiece.speedY = -1;
-    gamePiece.image.src = "./img/game-piece-moved.png";
+    if (gamePiece.y - gamePiece.speedY > 0) {
+      gamePiece.speedY = -1;
+      gamePiece.image.src = "./img/game-piece-moved.png";
+    }
   }
   if (gameArea.keys && gameArea.keys[40]) {
-    gamePiece.speedY = 1;
-    gamePiece.image.src = "./img/game-piece-moved.png";
+    if (gamePiece.y + gamePiece.height + gamePiece.speedY < gameArea.canvas.height) {
+      gamePiece.speedY = 1;
+      gamePiece.image.src = "./img/game-piece-moved.png";
+    }
   }
 
   gameArea.frameNo += 1;
