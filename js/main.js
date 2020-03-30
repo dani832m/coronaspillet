@@ -163,6 +163,7 @@ const updateGameArea = () => {
   background.newPos();
   background.update();
 
+  /* Game Piece default Speed Coordinates */
   gamePiece.speedX = 0;
   gamePiece.speedY = 0;
 
@@ -265,8 +266,23 @@ const updateGameArea = () => {
     background.update();
   }
 
+  /* Level 5 */
+  if (gameArea.frameNo >= 9000 && gameArea.frameNo < 11000) {
+    background = new Component(480, 270, "./img/background5.png", 0, 0, "image");
+    if (gameArea.frameNo >= 9000 && gameArea.frameNo < 9080) {
+      levelUp.text = "Level 5";
+      levelUp.update();
+    }
+    credits.update();
+    level.update();
+    gamePiece.newPos();
+    gamePiece.update();
+    obstacles.update();
+    background.update();
+  }
+
   /* Completed */
-  if (gameArea.frameNo >= 9000) {
+  if (gameArea.frameNo >= 11000) {
     background = new Component(480, 270, "./img/completed.png", 0, 0, "image");
     background.update();
   }
