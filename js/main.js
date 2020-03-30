@@ -24,9 +24,10 @@ document.querySelector(".close-groundwork").addEventListener("click", () => {
 });
 
 /* Declare Game Variables */
-let gamePiece, credits, level, background, levelUp, died, restart, bgMusic, gameOverSound;
+let gamePiece, credits, level, background, levelUp, died, restart, bgMusic, gameOverSound, fanfareSound;
 let obstacles = [];
 let soundPlayed = false;
+let fanfarePlayed = false;
 
 /* Start Game */
 const startGame = () => {
@@ -40,6 +41,7 @@ const startGame = () => {
   background = new Component(480, 270, "./img/background.png", 0, 0, "image");
   bgMusic = new Sound("./sounds/background-music.mp3");
   gameOverSound = new Sound("./sounds/game-over.wav");
+  fanfareSound = new Sound("./sounds/fanfare.wav");
 
   /* Play Background Music */
   bgMusic.play();
@@ -304,8 +306,13 @@ const updateGameArea = () => {
   if (gameArea.frameNo >= 11000) {
     background = new Component(480, 270, "./img/completed.png", 0, 0, "image");
     background.update();
+    bgMusic.stop();
     /* Prevent Game Over text to be displayed */
     obstacles = [];
+    if (fanfarePlayed === false) {
+      fanfareSound.play();
+      fanfarePlayed = true;
+    }
   }
 };
 
