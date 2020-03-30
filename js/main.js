@@ -24,19 +24,26 @@ document.querySelector(".close-groundwork").addEventListener("click", () => {
 });
 
 /* Declare Game Variables */
-let gamePiece, credits, level, background, levelUp, died, restart;
+let gamePiece, credits, level, background, levelUp, died, restart, bgMusic, gameOverSound;
 let obstacles = [];
+let soundPlayed = false;
 
 /* Start Game */
 const startGame = () => {
   /* Hide Main View */
   document.querySelector(".mainview").style.display = "none";
 
-  /* Initialize Variables with Component Objects */
+  /* Initialize Variables with Component and Sound Objects */
   gamePiece = new Component(40, 40, "./img/game-piece.png", 10, 120, "image");
   credits = new Component("15px", "Arial", "white", 300, 25, "text");
   level = new Component("15px", "Arial", "white", 410, 25, "text");
   background = new Component(480, 270, "./img/background.png", 0, 0, "image");
+  bgMusic = new Sound("./sounds/background-music.mp3");
+  gameOverSound = new Sound("./sounds/game-over.wav");
+
+  /* Play Background Music */
+  bgMusic.play();
+  bgMusic.sound.setAttribute("loop", "none");
 
   /* Call Start Method on Game Area */
   gameArea.start();
@@ -80,7 +87,7 @@ const gameArea = {
   }
 };
 
-/* Object Constructor */
+/* Object Constructor for Components */
 function Component(width, height, color, x, y, type) {
   this.type = type;
   if (type == "image") {
@@ -146,11 +153,17 @@ const updateGameArea = () => {
       restart.text = "Tryk på 'R' for at prøve igen.";
       died.update();
       restart.update();
+      bgMusic.stop();
+      if (soundPlayed === false) {
+        gameOverSound.play();
+        soundPlayed = true;
+      }
       /* If "R" Key is pressed */
       if (gameArea.keys && gameArea.keys[82]) {
         gameArea.stop();
         gameArea.clear();
         obstacles = [];
+        soundPlayed = false;
         startGame();
       }
       return;
@@ -295,6 +308,28 @@ const updateGameArea = () => {
     obstacles = [];
   }
 };
+
+/* Object Constructor for Sounds */
+function Sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+
+  /* Append Audio to Container */
+  document.querySelector(".container").appendChild(this.sound);
+
+  /* Play Method */
+  this.play = function() {
+    this.sound.play();
+  };
+
+  /* Stop Method */
+  this.stop = function() {
+    this.sound.pause();
+  };
+}
 
 const everyInterval = n => {
   if ((gameArea.frameNo / n) % 1 == 0) {
