@@ -25,7 +25,7 @@ document.querySelector(".close-groundwork").addEventListener("click", () => {
 
 /* Declare Game Variables */
 let gamePiece;
-const obstacles = [];
+let obstacles = [];
 let credits;
 let level;
 let background;
@@ -37,8 +37,8 @@ const startGame = () => {
 
   /* Initialize Variables with Component Objects */
   gamePiece = new Component(40, 40, "./img/game-piece.png", 10, 120, "image");
-  credits = new Component("15px", "Arial", "white", 290, 25, "text");
-  level = new Component("15px", "Arial", "white", 400, 25, "text");
+  credits = new Component("15px", "Arial", "white", 300, 25, "text");
+  level = new Component("15px", "Arial", "white", 410, 25, "text");
   background = new Component(480, 270, "./img/background.png", 0, 0, "image");
 
   /* Call Start Method on Game Area */
@@ -143,15 +143,23 @@ const updateGameArea = () => {
   for (i = 0; i < obstacles.length; i += 1) {
     /* If Game Piece crashes with Obstacles */
     if (gamePiece.crashWith(obstacles[i])) {
-      const died = new Component("22px", "Arial", "white", 100, 140, "text");
+      const died = new Component("22px", "Arial", "white", 100, 125, "text");
+      const restart = new Component("18px", "Arial", "white", 122, 160, "text");
       died.text = "Du smittede! Spillet er slut.";
+      restart.text = "Tryk på 'R' for at prøve igen.";
       died.update();
-      gameArea.stop();
+      restart.update();
+      /* If "R" Key is pressed */
+      if (gameArea.keys && gameArea.keys[82]) {
+        gameArea.stop();
+        gameArea.clear();
+        obstacles = [];
+        startGame();
+      }
       return;
     }
   }
 
-  gameArea.clear();
   background.newPos();
   background.update();
 
@@ -195,19 +203,27 @@ const updateGameArea = () => {
 
   /* Handle shown Credits and Level */
   credits.text = `Credits: ${gameArea.frameNo}`;
-  if (gameArea.frameNo < 1500) {
+  if (gameArea.frameNo < 1000) {
     level.text = "Level: 1";
   } else {
-    level.text = `Level: ${(gameArea.frameNo / 1000).toFixed()}`;
+    level.text = `Level: ${(gameArea.frameNo / 2000).toFixed()}`;
   }
 
   /* Declare and initialize Variable */
   let levelUp = new Component("22px", "Arial", "white", 201, 140, "text");
 
+  /* Level 1 */
+  if (gameArea.frameNo < 3000) {
+    credits.update();
+    level.update();
+    gamePiece.newPos();
+    gamePiece.update();
+  }
+
   /* Level 2 */
-  if (gameArea.frameNo >= 1500 && gameArea.frameNo < 2500) {
-    background = new Component(480, 270, "./img/game-piece.png", 0, 0, "image");
-    if (gameArea.frameNo >= 1500 && gameArea.frameNo < 1575) {
+  if (gameArea.frameNo >= 3000 && gameArea.frameNo < 5000) {
+    background = new Component(480, 270, "./img/background2.png", 0, 0, "image");
+    if (gameArea.frameNo >= 3000 && gameArea.frameNo < 3080) {
       levelUp.text = "Level 2";
       levelUp.update();
     }
@@ -219,11 +235,41 @@ const updateGameArea = () => {
     background.update();
   }
 
-  /* Level 1 */
-  credits.update();
-  level.update();
-  gamePiece.newPos();
-  gamePiece.update();
+  /* Level 3 */
+  if (gameArea.frameNo >= 5000 && gameArea.frameNo < 7000) {
+    background = new Component(480, 270, "./img/background3.png", 0, 0, "image");
+    if (gameArea.frameNo >= 5000 && gameArea.frameNo < 5080) {
+      levelUp.text = "Level 3";
+      levelUp.update();
+    }
+    credits.update();
+    level.update();
+    gamePiece.newPos();
+    gamePiece.update();
+    obstacles.update();
+    background.update();
+  }
+
+  /* Level 4 */
+  if (gameArea.frameNo >= 7000 && gameArea.frameNo < 9000) {
+    background = new Component(480, 270, "./img/background4.png", 0, 0, "image");
+    if (gameArea.frameNo >= 7000 && gameArea.frameNo < 7080) {
+      levelUp.text = "Level 4";
+      levelUp.update();
+    }
+    credits.update();
+    level.update();
+    gamePiece.newPos();
+    gamePiece.update();
+    obstacles.update();
+    background.update();
+  }
+
+  /* Completed */
+  if (gameArea.frameNo >= 9000) {
+    background = new Component(480, 270, "./img/completed.png", 0, 0, "image");
+    background.update();
+  }
 };
 
 const everyInterval = n => {
