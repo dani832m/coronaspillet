@@ -10,6 +10,14 @@ Enten kan du downloade kildekoden og spille lokalt i din browser, eller også ka
 
 <img src="https://i.imgur.com/gYt5ME8.png" alt="Screenshot from Game" width="430" height="230" /> <img src="https://i.imgur.com/bwbQ2q2.png" alt="Screenshot from Game" width="430" height="230" /> <img src="https://i.imgur.com/8F4QnrV.png" alt="Screenshot from Game" width="430" height="230" /> <img src="https://i.imgur.com/AgXee7Z.png" alt="Screenshot from Game" width="430" height="230" />
 
-## Licens
+## Changelog
+
+### v1.1
+
+- Favicon tilføjet.
+- Fejl med obstacles array fixet.
+- Justeringer i kodestruktur.
+
+## License
 
 Spillet er licenseret under MIT License. Jeg ejer ingen rettigheder til de billeder eller den musik, der er brugt.
