@@ -38,6 +38,7 @@ const startGame = () => {
   gamePiece = new Component(40, 40, "./img/game-piece.png", 10, 120, "image");
   credits = new Component("15px", "Arial", "white", 300, 25, "text");
   level = new Component("15px", "Arial", "white", 410, 25, "text");
+  levelUp = new Component("22px", "Arial", "white", 201, 140, "text");
   background = new Component(480, 270, "./img/background.png", 0, 0, "image");
   bgMusic = new Sound("./sounds/background-music.mp3");
   gameOverSound = new Sound("./sounds/game-over.wav");
@@ -102,6 +103,8 @@ function Component(width, height, color, x, y, type) {
   this.speedY = 0;
   this.x = x;
   this.y = y;
+
+  /* Update */
   this.update = () => {
     ctx = gameArea.context;
     if (this.type == "text") {
@@ -119,10 +122,14 @@ function Component(width, height, color, x, y, type) {
       ctx.fillRect(this.x, this.y, this.width, this.height);
     }
   };
+
+  /* New Position */
   this.newPos = () => {
     this.x += this.speedX;
     this.y += this.speedY;
   };
+
+  /* Crash */
   this.crashWith = otherobj => {
     const myleft = this.x;
     const myright = this.x + this.width;
@@ -172,9 +179,6 @@ const updateGameArea = () => {
     }
   }
 
-  background.newPos();
-  background.update();
-
   /* Game Piece default Speed Coordinates */
   gamePiece.speedX = 0;
   gamePiece.speedY = 0;
@@ -223,6 +227,18 @@ const updateGameArea = () => {
     obstacles[i].update();
   }
 
+  /* Updates on level up */
+  const updatesOnLvlUp = () => {
+    background.update();
+    for (let i = 0; i < obstacles.length; i += 1) {
+      obstacles[i].update();
+    }
+    gamePiece.newPos();
+    gamePiece.update();
+    credits.update();
+    level.update();
+  };
+
   /* Handle shown Credits and Level */
   credits.text = `Credits: ${gameArea.frameNo}`;
   if (gameArea.frameNo < 1000) {
@@ -231,75 +247,54 @@ const updateGameArea = () => {
     level.text = `Level: ${(gameArea.frameNo / 2000).toFixed()}`;
   }
 
-  /* Initialize Variable */
-  levelUp = new Component("22px", "Arial", "white", 201, 140, "text");
-
   /* Level 1 */
   if (gameArea.frameNo < 3000) {
-    credits.update();
-    level.update();
-    gamePiece.newPos();
-    gamePiece.update();
+    background.newPos();
+    updatesOnLvlUp();
+    if (gameArea.frameNo < 100) {
+      levelUp.text = "Let's go";
+      levelUp.update();
+    }
   }
 
   /* Level 2 */
   if (gameArea.frameNo >= 3000 && gameArea.frameNo < 5000) {
     background = new Component(480, 270, "./img/background2.png", 0, 0, "image");
+    updatesOnLvlUp();
     if (gameArea.frameNo >= 3000 && gameArea.frameNo < 3080) {
       levelUp.text = "Level 2";
       levelUp.update();
     }
-    credits.update();
-    level.update();
-    gamePiece.newPos();
-    gamePiece.update();
-    obstacles.update();
-    background.update();
   }
 
   /* Level 3 */
   if (gameArea.frameNo >= 5000 && gameArea.frameNo < 7000) {
     background = new Component(480, 270, "./img/background3.png", 0, 0, "image");
+    updatesOnLvlUp();
     if (gameArea.frameNo >= 5000 && gameArea.frameNo < 5080) {
       levelUp.text = "Level 3";
       levelUp.update();
     }
-    credits.update();
-    level.update();
-    gamePiece.newPos();
-    gamePiece.update();
-    obstacles.update();
-    background.update();
   }
 
   /* Level 4 */
   if (gameArea.frameNo >= 7000 && gameArea.frameNo < 9000) {
     background = new Component(480, 270, "./img/background4.png", 0, 0, "image");
+    updatesOnLvlUp();
     if (gameArea.frameNo >= 7000 && gameArea.frameNo < 7080) {
       levelUp.text = "Level 4";
       levelUp.update();
     }
-    credits.update();
-    level.update();
-    gamePiece.newPos();
-    gamePiece.update();
-    obstacles.update();
-    background.update();
   }
 
   /* Level 5 */
   if (gameArea.frameNo >= 9000 && gameArea.frameNo < 11000) {
     background = new Component(480, 270, "./img/background5.png", 0, 0, "image");
+    updatesOnLvlUp();
     if (gameArea.frameNo >= 9000 && gameArea.frameNo < 9080) {
       levelUp.text = "Level 5";
       levelUp.update();
     }
-    credits.update();
-    level.update();
-    gamePiece.newPos();
-    gamePiece.update();
-    obstacles.update();
-    background.update();
   }
 
   /* Completed */
