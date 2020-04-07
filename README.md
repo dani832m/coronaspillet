@@ -18,6 +18,10 @@ Enten kan du downloade kildekoden og spille lokalt i din browser, eller også ka
 - Fejl med obstacles array fixet.
 - Justeringer i kodestruktur.
 
+### v1.2
+
+- Mobil-version lanceret.
+
 ## License
 
 Spillet er licenseret under MIT License. Jeg ejer ingen rettigheder til de billeder eller den musik, der er brugt.
