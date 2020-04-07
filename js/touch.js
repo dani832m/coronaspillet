@@ -229,8 +229,18 @@ const updateGameArea = () => {
     }
   }
 
+  /* Level 6 */
+  if (gameArea.frameNo >= 11000 && gameArea.frameNo < 13000) {
+    background = new Component(480, 270, "./img/background6.png", 0, 0, "image");
+    updatesOnLvlUp();
+    if (gameArea.frameNo >= 11000 && gameArea.frameNo < 11080) {
+      levelUp.text = "Level 6";
+      levelUp.update();
+    }
+  }
+
   /* Completed */
-  if (gameArea.frameNo >= 11000) {
+  if (gameArea.frameNo >= 13000) {
     background = new Component(480, 270, "./img/completed.png", 0, 0, "image");
     background.update();
     bgMusic.stop();

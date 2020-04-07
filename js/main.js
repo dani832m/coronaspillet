@@ -57,7 +57,7 @@ const gameArea = {
   canvas: document.createElement("canvas"),
 
   /* Start Method */
-  start: function() {
+  start: function () {
     this.canvas.width = 480;
     this.canvas.height = 270;
     this.canvas.className = "gameview";
@@ -69,25 +69,25 @@ const gameArea = {
     document.querySelector(".container").appendChild(this.canvas);
 
     /* Listen on Keys */
-    window.addEventListener("keydown", e => {
+    window.addEventListener("keydown", (e) => {
       gameArea.keys = gameArea.keys || [];
       gameArea.keys[e.keyCode] = true;
     });
-    window.addEventListener("keyup", e => {
+    window.addEventListener("keyup", (e) => {
       gameArea.keys[e.keyCode] = false;
       gamePiece.image.src = "./img/game-piece.png";
     });
   },
 
   /* Clear Method */
-  clear: function() {
+  clear: function () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
 
   /* Stop Method */
-  stop: function() {
+  stop: function () {
     clearInterval(this.interval);
-  }
+  },
 };
 
 /* Object Constructor for Components */
@@ -130,7 +130,7 @@ function Component(width, height, color, x, y, type) {
   };
 
   /* Crash */
-  this.crashWith = otherobj => {
+  this.crashWith = (otherobj) => {
     const myleft = this.x;
     const myright = this.x + this.width;
     const mytop = this.y;
@@ -297,8 +297,18 @@ const updateGameArea = () => {
     }
   }
 
+  /* Level 6 */
+  if (gameArea.frameNo >= 11000 && gameArea.frameNo < 13000) {
+    background = new Component(480, 270, "./img/background6.png", 0, 0, "image");
+    updatesOnLvlUp();
+    if (gameArea.frameNo >= 11000 && gameArea.frameNo < 11080) {
+      levelUp.text = "Level 6";
+      levelUp.update();
+    }
+  }
+
   /* Completed */
-  if (gameArea.frameNo >= 11000) {
+  if (gameArea.frameNo >= 13000) {
     background = new Component(480, 270, "./img/completed.png", 0, 0, "image");
     background.update();
     bgMusic.stop();
@@ -323,17 +333,17 @@ function Sound(src) {
   document.querySelector(".container").appendChild(this.sound);
 
   /* Play Method */
-  this.play = function() {
+  this.play = function () {
     this.sound.play();
   };
 
   /* Stop Method */
-  this.stop = function() {
+  this.stop = function () {
     this.sound.pause();
   };
 }
 
-const everyInterval = n => {
+const everyInterval = (n) => {
   if ((gameArea.frameNo / n) % 1 == 0) {
     return true;
   }
