@@ -311,21 +311,25 @@ const clearMove = () => {
 document.querySelector(".bottom-panel-controls-move-up-btn").addEventListener("mousedown", moveUp, false);
 document.querySelector(".bottom-panel-controls-move-up-btn").addEventListener("touchstart", moveUp, false);
 document.querySelector(".bottom-panel-controls-move-up-btn").addEventListener("mouseup", clearMove, false);
+document.querySelector(".bottom-panel-controls-move-up-btn").addEventListener("touchend", clearMove, false);
 
 /* Move Down */
 document.querySelector(".bottom-panel-controls-move-down-btn").addEventListener("mousedown", moveDown, false);
 document.querySelector(".bottom-panel-controls-move-down-btn").addEventListener("touchstart", moveDown, false);
 document.querySelector(".bottom-panel-controls-move-down-btn").addEventListener("mouseup", clearMove, false);
+document.querySelector(".bottom-panel-controls-move-down-btn").addEventListener("touchend", clearMove, false);
 
 /* Move Left */
 document.querySelector(".bottom-panel-controls-move-left-btn").addEventListener("mousedown", moveLeft, false);
 document.querySelector(".bottom-panel-controls-move-left-btn").addEventListener("touchstart", moveLeft, false);
 document.querySelector(".bottom-panel-controls-move-left-btn").addEventListener("mouseup", clearMove, false);
+document.querySelector(".bottom-panel-controls-move-left-btn").addEventListener("touchend", clearMove, false);
 
 /* Move Right */
 document.querySelector(".bottom-panel-controls-move-right-btn").addEventListener("mousedown", moveRight, false);
 document.querySelector(".bottom-panel-controls-move-right-btn").addEventListener("touchstart", moveRight, false);
 document.querySelector(".bottom-panel-controls-move-right-btn").addEventListener("mouseup", clearMove, false);
+document.querySelector(".bottom-panel-controls-move-right-btn").addEventListener("touchend", clearMove, false);
 
 /* Restart */
 document.querySelector(".bottom-panel-restart-btn").addEventListener("mousedown", () => {
