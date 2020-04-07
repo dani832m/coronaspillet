@@ -11,14 +11,14 @@ let fanfarePlayed = false;
 
 /* Start Game */
 const startGame = () => {
-  /* Hide Touch View and show Controls */
+  /* Hide Touch View and show Bottom Panel */
   document.querySelector(".touchview").style.display = "none";
   document.querySelector(".bottom-panel").style.display = "flex";
 
   /* Initialize Variables with Component and Sound Objects */
-  gamePiece = new Component(40, 40, "./img/game-piece.png", 10, 120, "image");
-  credits = new Component("15px", "Arial", "white", 300, 25, "text");
-  level = new Component("15px", "Arial", "white", 410, 25, "text");
+  gamePiece = new Component(42, 42, "./img/game-piece.png", 10, 120, "image");
+  credits = new Component("18px", "Arial", "white", 265, 25, "text");
+  level = new Component("18px", "Arial", "white", 395, 25, "text");
   levelUp = new Component("22px", "Arial", "white", 201, 140, "text");
   background = new Component(480, 270, "./img/background.png", 0, 0, "image");
   bgMusic = new Sound("./sounds/background-music.mp3");
@@ -148,7 +148,7 @@ const updateGameArea = () => {
     minHeight = 80;
     maxHeight = 200;
     height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
-    minGap = 55;
+    minGap = 65;
     maxGap = 120;
     gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
     obstacles.push(new Component(25, height, "./img/obstacles.png", x, 0, "image"));
