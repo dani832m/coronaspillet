@@ -1,4 +1,4 @@
-# Coronaspillet
+<img src="https://i.imgur.com/VmlVGvy.png" alt="Coronaspillet" /> <img src="https://img.shields.io/badge/version-1.2-red" alt="Version" /> <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License" /></a>
 
 Baseret på HTML Canvas, CSS og JavaScript har jeg bikset dette lille spil sammen, hvor det gælder om at styre Coronavirussen uden om menneskerne for at undgå at sprede smitten. Jo flere mennesker, du styrer uden om, desto flere credits får du af Mette. Du styrer virussen via piletasterne, og dine credits og aktuelle level står oppe i hjørnet. Hvis uheldet skulle være ude, og du får smittet nogle, så kan du trykke "R" for at prøve igen, hvis du spiller på desktop, eller på knappen "Restart", hvis du spiller på smartphone.
 
