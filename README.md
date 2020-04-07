@@ -28,6 +28,7 @@ Enten kan du downloade kildekoden og spille lokalt i din browser, eller også ka
 
 - Mobil-version lanceret.
 - Nyt level tilføjet.
+- Bug fix.
 
 ## License
 
