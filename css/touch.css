@@ -58,6 +58,10 @@ body {
   border: 4px solid rgb(199, 0, 0);
 }
 
+.touchview-game-piece-icon {
+  margin-top: 40px;
+}
+
 .gameview {
   background: transparent;
   border: 3px solid rgb(0, 48, 87);
