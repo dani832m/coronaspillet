@@ -27,6 +27,7 @@ Enten kan du downloade kildekoden og spille lokalt i din browser, eller også ka
 ### v1.2
 
 - Mobil-version lanceret.
+- Nyt level tilføjet.
 
 ## License
 
