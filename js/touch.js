@@ -1,3 +1,12 @@
+/* Prevent right click */
+window.addEventListener(
+  "contextmenu",
+  (e) => {
+    e.preventDefault();
+  },
+  false
+);
+
 /* Start Game on Click */
 document.querySelector(".play-game").addEventListener("click", () => {
   startGame();
