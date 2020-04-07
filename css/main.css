@@ -93,26 +93,44 @@ body {
 
 .small-device-alert {
   display: none;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 16px;
-  text-align: center;
-  color: rgb(124, 0, 0);
-  margin: 20px;
-  letter-spacing: 1px;
-  border-radius: 10px;
-  background-color: rgb(248, 226, 226);
-  border: 3px solid rgb(124, 0, 0);
 }
 
-/***** MEDIA QUERIES *****/
+/***** MEDIA QUERY FOR SMALL DEVICE *****/
 
 @media (max-width: 480px) {
   .mainview,
   .gameview {
     display: none;
   }
+
   .small-device-alert {
     display: block;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px 16px;
+    color: rgb(124, 0, 0);
+    margin: 20px;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    background-color: rgb(248, 226, 226);
+    border: 3px solid rgb(124, 0, 0);
+    line-height: 30px;
+    text-align: justify;
+  }
+
+  .small-device-alert-heading {
+    font-size: 32px;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+
+  .small-device-alert-text {
+    margin-bottom: 15px;
+  }
+
+  .small-device-alert-link {
+    color: rgb(124, 0, 0);
+    text-decoration: none;
   }
 }
