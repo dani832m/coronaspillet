@@ -12,11 +12,11 @@ Enten kan du downloade kildekoden og spille lokalt i din browser, eller også ka
 
 ### Desktop version
 
-<img src="https://i.imgur.com/gYt5ME8.png" alt="Screenshot from Game" width="430" height="230" /> <img src="https://i.imgur.com/bwbQ2q2.png" alt="Screenshot from Game" width="430" height="230" /> <img src="https://i.imgur.com/8F4QnrV.png" alt="Screenshot from Game" width="430" height="230" /> <img src="https://i.imgur.com/AgXee7Z.png" alt="Screenshot from Game" width="430" height="230" />
+<img src="https://i.imgur.com/rSTTsqt.png" alt="Screenshot from Game" width="430" height="230" /> <img src="https://i.imgur.com/XKqyOTp.png" alt="Screenshot from Game" width="430" height="230" /> <img src="https://i.imgur.com/KVuhlVH.png" alt="Screenshot from Game" width="430" height="230" /> <img src="https://i.imgur.com/zszLsBW.png" alt="Screenshot from Game" width="430" height="230" />
 
 ### Mobile version
 
-<img src="https://i.imgur.com/MTtgdfx.png" alt="Screenshot from Game" width="330" height="500" /> <img src="https://i.imgur.com/mod2dcm.png" alt="Screenshot from Game" width="330" height="500" />
+<img src="https://i.imgur.com/JymrIG0.png" alt="Screenshot from Game" width="330" height="500" /> <img src="https://i.imgur.com/9ZpcZZi.png" alt="Screenshot from Game" width="330" height="500" />
 
 ## Changelog
 
