@@ -34,4 +34,4 @@ Enten kan du downloade kildekoden og spille lokalt i din browser, eller også ka
 
 ## License
 
-Spillet er licenseret under MIT License. Jeg ejer ingen rettigheder til de billeder eller den musik, der er brugt.
+Spillet er licenseret under MIT License. Jeg ejer ingen rettigheder til de billeder eller den musik, der er brugt, og du skal være mere end velkommen til at udvikle videre på nuværende version af spillet.
