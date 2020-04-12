@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/VmlVGvy.png" alt="Coronaspillet" />
+<img src="https://i.imgur.com/AhDJZqP.png" alt="Coronaspillet" />
 
 <img src="https://img.shields.io/badge/version-1.2-red" alt="Version" /> <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License" /></a>
 
