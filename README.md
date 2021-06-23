@@ -6,7 +6,7 @@ Baseret på HTML Canvas, CSS og JavaScript har jeg bikset dette lille spil samme
 
 ## Prøv spillet
 
-Enten kan du downloade kildekoden og spille lokalt i din browser, eller også kan du hoppe ind på [n4.dk/coronaspillet](http://n4.dk/coronaspillet), hvor det i skrivende stund ligger online.
+Du kan prøve spillet ved at downloade kildekoden og køre den lokalt i din browser.
 
 ## Screenshots
 
